@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <am.hour.unknown.my.MyScrollView
+    <am.hour.beebird.my.MyScrollView
         android:id="@+id/scrollView"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:textColor="@android:color/white"
                     />
                  <!-- 下面的内容都是首页看不到的东西了 -->
-                 <am.hour.unknown.my.MyLinearLayout 
+                 <am.hour.beebird.my.MyLinearLayout 
                      android:id="@+id/ll_key_points"
                      android:layout_width="fill_parent"
                      android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                      android:layout_marginBottom="0dip"                
                      android:orientation="horizontal"
                      >
-                 </am.hour.unknown.my.MyLinearLayout>
+                 </am.hour.beebird.my.MyLinearLayout>
                   <LinearLayout 
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
@@ -296,7 +296,7 @@
             
         </FrameLayout>
         
-    </am.hour.unknown.my.MyScrollView>
+    </am.hour.beebird.my.MyScrollView>
     <LinearLayout 
         android:id="@+id/the_bottom_buttons"
         android:layout_width="match_parent"
