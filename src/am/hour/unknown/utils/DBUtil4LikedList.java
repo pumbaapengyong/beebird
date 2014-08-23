@@ -17,13 +17,12 @@ public class DBUtil4LikedList {
 	private SQLiteDatabase mydb = null;
 	private Context context;
 	/*
-	 * type¾ÍÊÇÕâ¸ö¶«Î÷ÊÇ´æ´¢Í¼Æ¬»¹ÊÇ´æ´¢¹¤×÷
+	 *å°†å–œæ¬¢å·¥ä½œçš„åˆ—è¡¨ä¸­æ•°æ®è¯»å–æ•°æ®åº“ä¸­
 	 * */
 	public DBUtil4LikedList(){
 		this.context=MainApplication.getContext();
 		myJobSQLiteOpenHelper = new JobSQLiteOpenHelper(context, "jobstable.db", null,
 				1);
-		// ´´½¨Ò»¸ö¿É¶ÁĞ´µÄÊı¾İ¿â
 		mydb = myJobSQLiteOpenHelper.getWritableDatabase();
 		
 	}
@@ -33,7 +32,6 @@ public class DBUtil4LikedList {
     public void saveJobInDB(JobShortInfo jsi){
 
 		ContentValues cv=new ContentValues();
-		//Õâ»õµÄÊôĞÔÊÇÊı×Ö£¬²»ÊÇÒ»¸ö×Ö·û´®
 		cv.put("_jobId", Integer.parseInt(jsi.getJobId()));   
 		cv.put("_jobName", jsi.getJobName()); 
 		cv.put("_likeNumber", jsi.getLikeNumber());
@@ -45,7 +43,7 @@ public class DBUtil4LikedList {
     }
 	
 	/*
-	 * ½«Êı¾İ¿âÖĞµÄĞÅÏ¢È«²¿¶ÁÈ¡³öÀ´
+	 *å°†å­˜å‚¨çš„æ‰€æœ‰å·¥ä½œéƒ½å»é™¤
 	 * */
 	public HashMap<Integer,JobShortInfo> getJobsFromDB(){
 		
@@ -88,7 +86,7 @@ public class DBUtil4LikedList {
 	}
 	
 	/*
-	 * ½«Êı¾İ¿âÖĞµÄÄ³Ò»ÌõÊı¾İ¶ÁÈ¡³öÀ´£¬ÅĞ¶Ï´æ²»´æÔÚ
+	 *è¯»å–ä¸€ä¸ªå·¥ä½œçš„ä¿¡æ¯
 	 * */
 	public JobShortInfo getOneJobFromDB(int jobId1){
 		
@@ -140,22 +138,17 @@ public class DBUtil4LikedList {
 	
 	
 	private class JobSQLiteOpenHelper extends SQLiteOpenHelper {
-		// ÖØĞ´¹¹Ôì·½·¨
 		public JobSQLiteOpenHelper(Context context, String name,
 			CursorFactory cursor, int version) {
 			super(context, name, cursor, version);
 		}
-		
-		// ´´½¨Êı¾İ¿âµÄ·½·¨
+
 		public void onCreate(SQLiteDatabase db) {
-			// ´´½¨Ò»¸öÊı¾İ¿â£¬±íÃû£ºjobstable£¬×Ö¶Î£º"_id","_jobName","_likeNumber",
-			//"_salary","_workPlace","_companyLogo"
 			db.execSQL("CREATE TABLE jobstable (_id INTEGER PRIMARY KEY AUTOINCREMENT,_jobId INTEGER,_jobName NVARCHAR(20)," +
 					"_likeNumber NVARCHAR(10),_salary NVARCHAR(20),_workPlace NVARCHAR(10)," +
 					"_companyLogo NVARCHAR(30))");
 		}
-		
-		// ¸üĞÂÊı¾İ¿âµÄ·½·¨
+
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 			db.execSQL("DROP TABLE IF EXISTS "+"jobstable");     

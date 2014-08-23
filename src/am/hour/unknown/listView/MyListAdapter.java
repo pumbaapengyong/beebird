@@ -42,7 +42,6 @@ public class MyListAdapter extends BaseAdapter {
 		notifyDataSetChanged();
 	}
 
-	//适配器根据getCount()函数来确定要加载多少项
 	@Override
 	public int getCount() {
 		return likedListData.size();
@@ -59,8 +58,7 @@ public class MyListAdapter extends BaseAdapter {
 		return paramInt;
 	}
 	/*
-	 * 当列表里的每一项显示到界面时，都会调用这个方法一次，并返回一个view 所以方法里面尽量要简单，不要做没必要的动作(non-Javadoc)
-	 * 我这里为了大家好理解，没有做优化
+	 *
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -78,7 +76,6 @@ public class MyListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder)convertView.getTag();
         }
-//        System.out.println("这是是getview方法，现在读取"+position+"个ITEM");
         holder.jobName.setText(likedListData.get(position).getJobName());
         holder.likeNumber.setText(likedListData.get(position).getLikeNumber());
         holder.salary.setText(likedListData.get(position).getSalary());

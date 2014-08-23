@@ -9,23 +9,24 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 
+//è¿™ä¸ªç±»ç›®å‰è²Œä¼¼è¿˜æ²¡æœ‰æ€ä¹ˆä½¿ç”¨ï¼Œç°åœ¨é€»è¾‘æœ‰ç‚¹æ··ä¹±
 public class FileUtil {
 	/**
-	 * sd¿¨µÄ¸ùÄ¿Â¼
+	 *SDå¡çš„æ ¹è·¯å¾„
 	 */
 	private static String mSdRootPath = Environment.getExternalStorageDirectory().getPath();
 	/**
-	 * ÊÖ»úµÄ»º´æ¸ùÄ¿Â¼
+	 *å†…éƒ¨å­˜å‚¨çš„æ ¹è·¯å¾„
 	 */
 	private static String mDataRootPath  = MainApplication.getContext().getCacheDir().getPath();;
 	/**
-	 * ±£´æImageµÄÄ¿Â¼Ãû
+	 *æ–‡ä»¶å¤¹çš„åç§°
 	 */
 	private final static String FOLDER_NAME = "/BeeBird/pics";
 
 	
 	/**
-	 * »ñÈ¡´¢´æImageµÄÄ¿Â¼
+	 *å¾—åˆ°å­˜å‚¨çš„ä½ç½®ï¼ŒSDå¡èƒ½ç”¨ï¼Œå°±ç”¨SDå¡ï¼Œä¸ç„¶å°±ç”¨æ‰‹æœºçš„å†…éƒ¨å­˜å‚¨
 	 * @return
 	 */
 	public static String getStorageDirectory(){
@@ -34,7 +35,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ±£´æImageµÄ·½·¨£¬ÓĞsd¿¨´æ´¢µ½sd¿¨£¬Ã»ÓĞ¾Í´æ´¢µ½ÊÖ»úÄ¿Â¼
+	 *å°†æ–‡ä»¶å­˜å‚¨åˆ°ç›¸åº”çš„ä½ç½®
 	 * @param fileName 
 	 * @param bitmap   
 	 * @throws IOException
@@ -57,25 +58,23 @@ public class FileUtil {
 	}
 	
 	/**
-	 * ´ÓÊÖ»ú»òÕßsd¿¨»ñÈ¡Bitmap
+	 *é€šè¿‡æ–‡ä»¶åå¾—åˆ°å›¾ç‰‡
 	 * @param fileName
 	 * @return
 	 */
 	public static Bitmap getBitmap(String fileName){
-		System.out.println("¿ªÊ¼ÔÚÎÄ¼şÏµÍ³ÖĞÑ°ÕÒÕÕÆ¬");
 		BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
         o.inPreferredConfig = Bitmap.Config.RGB_565;
  	    o.inPurgeable = true;
  	    o.inInputShareable = true;
  	    if(null==BitmapFactory.decodeFile(getStorageDirectory() + File.separator + fileName.hashCode(), o)){
- 	    	System.out.println("ÕÒµ½µÄÕÕÆ¬Îª¿Õ");
  	    }
  	   return BitmapFactory.decodeFile(getStorageDirectory() + File.separator + fileName.hashCode(), o);
 	}
 	
 	/**
-	 * ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	 *åˆ¤æ–­æ˜¯å¦å­˜åœ¨
 	 * @param fileName
 	 * @return
 	 */
@@ -84,7 +83,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * »ñÈ¡ÎÄ¼şµÄ´óĞ¡
+	 *å¾—åˆ°æ–‡ä»¶çš„å¤§å°
 	 * @param fileName
 	 * @return
 	 */
@@ -94,7 +93,7 @@ public class FileUtil {
 	
 	
 	/**
-	 * É¾³ıSD¿¨»òÕßÊÖ»úµÄ»º´æÍ¼Æ¬ºÍÄ¿Â¼
+	 *åˆ é™¤æ–‡ä»¶
 	 */
 	public static void deleteFile() {
 		File dirFile = new File(getStorageDirectory());

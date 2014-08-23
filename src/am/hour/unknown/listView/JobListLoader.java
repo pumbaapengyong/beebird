@@ -22,7 +22,7 @@ import android.util.Log;
 
 public class JobListLoader {
 
-	//ÕâÊÇºÍÊı¾İ¿â½»»¥µÄ¹¤¾ßÀà
+	//æ•°æ®åº“æ“ä½œç±»
     DBUtil4LikedList dbUtil4LikedList = null;
     private Queue<String> jobsToLoad=new LinkedList<String>();
     public JobsLoader jobLoaderThread=new JobsLoader();
@@ -44,16 +44,14 @@ public class JobListLoader {
         if(jobLoaderThread.getStatus()==Status.PENDING)
         	jobLoaderThread.execute("");
     }
-    //´Ó´æ´¢¿Õ¼ä»òÍøÂçÉÏÏÂÔØÍ¼ÏñµÄ·½·¨£¬Ó¦¸ÃÔÚÏß³ÌÖĞµ÷ÓÃ
-    //ÏÂÔØÖ®ºó¾ÍÖ±½Ó´æ´¢µ½ÁË´æ´¢¿Õ¼äÖĞ£¬Í¨¹ıUtilsÖĞµÄ·½·¨½«ÏÂÔØµÄÎÄ¼ş±£´æÁË
+    //ä»è¯¥æ•°æ®åº“ä¸­è¯»å–å·¥ä½œä¿¡æ¯æˆ–è€…ä»ç½‘ç»œä¸Šä¸‹è½½
     private JobShortInfo getJobShortInfo(String url) 
     {
     	String[] strings = url.split("&");
     	int jobId = Integer.parseInt(strings[6]);
-    	System.out.println("¹¤×÷IDÊÇ£º"+jobId);
     	JobShortInfo jsi =  dbUtil4LikedList.getOneJobFromDB(jobId);
     	if(jsi.getJobId()!=null){
-    		System.out.println("ÔÚÊı¾İ¿âÖĞÕÒµ½ÁËÕâ¸ö¼ÇÂ¼,¹¤×÷IDÊÇ£º"+jsi.getJobId());
+    		
     	}else{
     		//from web
             try {
@@ -70,16 +68,12 @@ public class JobListLoader {
     					baos.write(buf, 0, length);
     				}
     			String result =	new String(baos.toByteArray(), "utf-8");
-    			System.out.println("¶ÁÈ¡ÁĞ±íÖĞµÄÄÚÈİÈçÏÂ"+result);
     			String temp[] = result.split("&");
-    			jsi = JsonUtil.json2Class4LikedFragment(temp[2]);
-    			System.out.println("ÁĞ±íÖĞµÄÄÚÈİ½âÎö³öµÄÄÚÈİÊÇ£º"+jsi.toString());
-    			System.out.println("ÏòÊı¾İ¿â´æÊı¾İ¿©");  			
+    			jsi = JsonUtil.json2Class4LikedFragment(temp[2]);			
     			dbUtil4LikedList.saveJobInDB(jsi);	
     			return jsi;
                 } 
             }catch (Exception ex){
-            	System.out.println("¶ÁÈ¡ÁĞ±íÖĞµÄÄÚÈİÊ§°Ü,ÕâÊÇµÚ"+Utils.findURL(url)+"¸öitem");
                 ex.printStackTrace();
             }
     	}
@@ -93,11 +87,7 @@ public class JobListLoader {
 
 
     public class JobsLoader extends AsyncTask<String, JobShortInfo, String> {
-		
-		
 
-    	
-    	//doInBackground·½·¨ÄÚ²¿Ö´ĞĞºóÌ¨ÈÎÎñ,²»¿ÉÔÚ´Ë·½·¨ÄÚĞŞ¸ÄUI
 		@Override
 		protected String doInBackground(String... params) {
 			try {
@@ -112,10 +102,9 @@ public class JobListLoader {
                     {
                         String url;
                         synchronized(jobsToLoad){
-                        	//½«×îĞÂµÄÏÂÔØ¶ÔÏóµ¯³ö
+                        	//å¼¹å‡ºä¸€ä¸ªä¸‹è½½ä»»åŠ¡
                         	url=jobsToLoad.poll();
                         }
-                        //Õâ¸ö·½·¨ÖĞÓĞ¾ßÌåµÄÏÂÔØ¹ı³Ì£¬·½·¨µÄÖ´ĞĞÊ±¼ä½Ï³¤£¬ËùÒÔÔÚÏß³ÌÖĞµ÷ÓÃ
                         JobShortInfo jsi = getJobShortInfo(url);
                         publishProgress(jsi);
                     }
@@ -132,10 +121,10 @@ public class JobListLoader {
 		@Override
     	protected void onProgressUpdate(JobShortInfo... progresses) {
 			if(null!=progresses[0])
+				//å°†ä¸‹è½½çš„ç»“æœè¿”å›ç»™åˆ—è¡¨åˆ·æ–°
 			     LikedFragment.refreshData(progresses[0]);
     	}
 		
-		//onPostExecute·½·¨ÓÃÓÚÔÚÖ´ĞĞÍêºóÌ¨ÈÎÎñºó¸üĞÂUI,ÏÔÊ¾½á¹û
 		@Override
 		protected void onPostExecute(String result) {
 

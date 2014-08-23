@@ -6,7 +6,6 @@ public class JobShortInfo {
 	private String salary;
 	private String workPlace;
 	private String jobId;
-	//Õâ¸öÊÇlogoµÄÁ´½Ó
 	private String companyLogo;
 	
 	public String getJobName() {
@@ -47,7 +46,7 @@ public class JobShortInfo {
 	}
 	
 	public String toString(){	
-		return "¹¤×÷Ãû³ÆÊÇ£º"+jobName+"  ÔŞµÄÊıÁ¿ÊÇ£º"+likeNumber+"  Ğ½Ë®ÊÇ£º"+salary+"  ¹¤×÷µØµãÊÇ£º"+workPlace+"  ¹¤×÷µÄIDÊÇ£º"+jobId;
+		return "å·¥ä½œåç§°æ˜¯ï¼š"+jobName+"  å–œæ¬¢çš„æ•°æ®æ˜¯ï¼š"+likeNumber+"è–ªæ°´æ˜¯ï¼š"+salary+" å·¥ä½œåœ°ç‚¹æ˜¯ï¼š"+workPlace+"  èŒä½çš„IDæ˜¯ï¼š"+jobId;
 	}
 
 }

@@ -16,9 +16,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import android.util.Base64;
 /**
- * AES¶Ô³Æ¼ÓÃÜËã·¨£¬java6ÊµÏÖ£¬bouncycastleÒ²Ö§³ÖAES¶Ô³Æ¼ÓÃÜËã·¨
- * ÎÒÃÇ¿ÉÒÔÒÔAESËã·¨ÊµÏÖÎª²Î¿¼£¬Íê³ÉRC2£¬RC4ºÍBlowfishËã·¨µÄÊµÏÖ
- * @author kongqz
+ *ä½¿ç”¨AESåŠ å¯†è§£å¯†çš„å·¥å…·ç±»
  * */
 public class AESUtil {
 	
@@ -26,35 +24,31 @@ public class AESUtil {
 	private void test() throws InvalidKeyException{
 //      String content = "test";
 //      String password = "12345678";
-//      //¼ÓÃÜ
-//      System.out.println("¼ÓÃÜÇ°£º" + content);
+//      System.out.println("æ˜æ–‡æ˜¯ï¼š" + content);
 //      byte[] encryptResult = encrypt(content, password);
 //      System.out.println(encryptResult);
-//      //½âÃÜ
 //      byte[] decryptResult = decrypt(encryptResult,password);
-//      System.out.println("½âÃÜºó£º" + new String(decryptResult));
+//      System.out.println("è§£å¯†åçš„æ˜æ–‡æ˜¯" + new String(decryptResult));
       
       
       
       
       String content_2 = "test";
       String password_2 = "12345678";
-      //¼ÓÃÜ
-      System.out.println("¼ÓÃÜÇ°£º" + content_2);
+      System.out.println("æ˜æ–‡æ˜¯ï¼š" + content_2);
       byte[] encryptResult_2 = encrypt(content_2, password_2);
       String encryptResultStr_2 = parseByte2HexStr(encryptResult_2);
-      System.out.println("¼ÓÃÜºó£º" + encryptResultStr_2);
-      //½âÃÜ
+      System.out.println("åŠ å¯†åçš„å­—ä¸²æ˜¯ï¼š" + encryptResultStr_2);
       byte[] decryptFrom_2 = parseHexStr2Byte(encryptResultStr_2);
       byte[] decryptResult_2 = decrypt(decryptFrom_2,password_2);
-      System.out.println("½âÃÜºó£º" + new String(decryptResult_2));
+      System.out.println("è§£å¯†åçš„æ˜æ–‡æ˜¯ï¼š" + new String(decryptResult_2));
 	}
 
     /**
-     * ¼ÓÃÜ
+     *åŠ å¯†ç¨‹åº
      * 
-     * @param content ĞèÒª¼ÓÃÜµÄÄÚÈİ
-     * @param password  ¼ÓÃÜÃÜÂë
+     * @param content
+     * @param password
      * @return
      * @throws java.security.InvalidKeyException 
      */
@@ -65,11 +59,11 @@ public class AESUtil {
                     SecretKey secretKey = kgen.generateKey();
                     byte[] enCodeFormat = secretKey.getEncoded();
                     SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
-                    Cipher cipher = Cipher.getInstance("AES");// ´´½¨ÃÜÂëÆ÷
+                    Cipher cipher = Cipher.getInstance("AES");
                     byte[] byteContent = content.getBytes("utf-8");
-                    cipher.init(Cipher.ENCRYPT_MODE, key);// ³õÊ¼»¯
+                    cipher.init(Cipher.ENCRYPT_MODE, key);
                     byte[] result = cipher.doFinal(byteContent);
-                    return result; // ¼ÓÃÜ
+                    return result;
             } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -85,9 +79,9 @@ public class AESUtil {
             }
             return null;
     }
-    /**½âÃÜ
-     * @param content  ´ı½âÃÜÄÚÈİ
-     * @param password ½âÃÜÃÜÔ¿
+    /**è§£å¯†ç¨‹åº
+     * @param content
+     * @param password
      * @return
      * @throws java.security.InvalidKeyException 
      */
@@ -98,10 +92,10 @@ public class AESUtil {
                      SecretKey secretKey = kgen.generateKey();
                      byte[] enCodeFormat = secretKey.getEncoded();
                      SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");            
-                     Cipher cipher = Cipher.getInstance("AES");// ´´½¨ÃÜÂëÆ÷
-                    cipher.init(Cipher.DECRYPT_MODE, key);// ³õÊ¼»¯
+                     Cipher cipher = Cipher.getInstance("AES");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    cipher.init(Cipher.DECRYPT_MODE, key);// ï¿½ï¿½Ê¼ï¿½ï¿½
                     byte[] result = cipher.doFinal(content);
-                    return result; // ¼ÓÃÜ
+                    return result; // ï¿½ï¿½ï¿½ï¿½
             } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
             } catch (NoSuchPaddingException e) {
@@ -115,7 +109,7 @@ public class AESUtil {
             }
             return null;
     }
-    /**½«¶ş½øÖÆ×ª»»³É16½øÖÆ
+    /**å°†byteæ•°ç»„è½¬æˆå­—ç¬¦ä¸²
      * @param buf
      * @return
      */
@@ -130,7 +124,7 @@ public class AESUtil {
             }
             return sb.toString();
     }
-    /**½«16½øÖÆ×ª»»Îª¶ş½øÖÆ
+    /**å°†å­—ç¬¦ä¸²è½¬ä¸º16ä½çš„byteæ•°ç»„
      * @param hexStr
      * @return
      */
@@ -147,8 +141,3 @@ public class AESUtil {
     }
 
 }
-//¿ØÖÆÌ¨Êä³ö½á¹û£º
-//Ô­ÎÄ£ºAES
-//ÃÜÔ¿£ºPZ2cqR0GgybDSHtJqlrM59A5f2wLBapFTjidt1AADJg=
-//¼ÓÃÜºó£ºUVtlIlbQIufti69QYGyYMw==
-//½âÃÜºó£ºAES

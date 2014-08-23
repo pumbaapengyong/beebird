@@ -17,13 +17,12 @@ public class DBUtil4Image {
 	private SQLiteDatabase mydb = null;
 	private Context context;
 	/*
-	 * type¾ÍÊÇÕâ¸ö¶«Î÷ÊÇ´æ´¢Í¼Æ¬»¹ÊÇ´æ´¢¹¤×÷
+	 *å°†å¤´åƒå­˜å…¥æ•°æ®ä¸­
 	 * */
 	public DBUtil4Image(){
 		this.context=MainApplication.getContext();
 		myPicSQLiteOpenHelper = new PicSQLiteOpenHelper(context, "saveimage.db", null,
 				1);
-		// ´´½¨Ò»¸ö¿É¶ÁĞ´µÄÊı¾İ¿â
 		mydb = myPicSQLiteOpenHelper.getWritableDatabase();
 		
 	}
@@ -32,22 +31,15 @@ public class DBUtil4Image {
 	
     public void savePicInDB(Bitmap bitmap1){
     	try {
-    		
-            //½«Í¼Æ¬×ª»¯ÎªÎ»Í¼
-    		//Bitmap bitmap1=BitmapFactory.decodeResource(getResources(), R.drawable.erweima);	
+    			
     		int size=bitmap1.getWidth()*bitmap1.getHeight()*4;		
-    		//´´½¨Ò»¸ö×Ö½ÚÊı×éÊä³öÁ÷,Á÷µÄ´óĞ¡Îªsize
     		ByteArrayOutputStream baos=new ByteArrayOutputStream(size);    
-    		//ÉèÖÃÎ»Í¼µÄÑ¹Ëõ¸ñÊ½£¬ÖÊÁ¿Îª100%£¬²¢·ÅÈë×Ö½ÚÊı×éÊä³öÁ÷ÖĞ    
     		bitmap1.compress(Bitmap.CompressFormat.PNG, 100, baos);
-    		//½«×Ö½ÚÊı×éÊä³öÁ÷×ª»¯Îª×Ö½ÚÊı×ébyte[]    
     		byte[] imagedata1=baos.toByteArray(); 
-    		//½«×Ö½ÚÊı×é±£´æµ½Êı¾İ¿âÖĞ    
     		ContentValues cv=new ContentValues();
     		cv.put("_id", 1);   
     		cv.put("image", imagedata1);   
     		mydb.insert("imagetable", null, cv);
-    		//¹Ø±Õ×Ö½ÚÊı×éÊä³öÁ÷
     		baos.close();
     		 
     		} catch (Exception e) {
@@ -56,7 +48,7 @@ public class DBUtil4Image {
     }
 	
 	/*
-	 * ´ÓÊı¾İ¿âÖĞ¶ÁÈ¡ÓÃ»§Í·Ïñ£¬´Ó¶øºóÆÚÄÜ¹»ÏÔÊ¾
+	 *ä»æ•°æ®åº“ä¸­è¯»å–å¤´åƒ
 	 * */
 	public Bitmap getPicFromDB(){
 		
@@ -67,10 +59,8 @@ public class DBUtil4Image {
 		else{
 			byte[] imagequery=null;
 			if(cur.moveToNext()){
-				//½«BlobÊı¾İ×ª»¯Îª×Ö½ÚÊı×é
 				imagequery=cur.getBlob(cur.getColumnIndex("image"));
 			}
-			//½«×Ö½ÚÊı×é×ª»¯ÎªÎ»Í¼
 			if(imagequery==null)
 				return null;
 			Bitmap imagebitmap=BitmapFactory.decodeByteArray(imagequery, 0, imagequery.length);
@@ -92,19 +82,15 @@ public class DBUtil4Image {
 	}
 	
 	private class PicSQLiteOpenHelper extends SQLiteOpenHelper {
-		// ÖØĞ´¹¹Ôì·½·¨
 		public PicSQLiteOpenHelper(Context context, String name,
 			CursorFactory cursor, int version) {
 			super(context, name, cursor, version);
 		}
 		
-		// ´´½¨Êı¾İ¿âµÄ·½·¨
 		public void onCreate(SQLiteDatabase db) {
-			// ´´½¨Ò»¸öÊı¾İ¿â£¬±íÃû£ºimagetable£¬×Ö¶Î£º_id¡¢image¡£
 			db.execSQL("CREATE TABLE imagetable (_id INTEGER PRIMARY KEY AUTOINCREMENT,image BLOB)");
 		}
 		
-		// ¸üĞÂÊı¾İ¿âµÄ·½·¨
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 		}

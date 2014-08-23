@@ -24,24 +24,23 @@ import android.widget.ImageView;
 
 public class ImageLoader {
     /*
-     * Í¼Æ¬µÄ»º´æ¶ÔÏó£¬°üÀ¨get£¬put£¬clear·½·¨
+     * Í¼Æ¬ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬°ï¿½ï¿½ï¿½getï¿½ï¿½putï¿½ï¿½clearï¿½ï¿½ï¿½ï¿½
      * */
 	
     MemoryCache memoryCache=new MemoryCache();
     /*
-     * ÎÄ¼ş´æ´¢¶ÔÏó£¬°üÀ¨getfile£¬clear·½·¨
+     *å°†å›¾ç‰‡ç¼“å­˜è‡³æ‰‹æœºå†…å­˜å¡çš„ç±»
      * */
     ICUtil4LikedList imageCache;
-    //Õâ¸öÊÇÄ¬ÈÏµÄÍ¼Æ¬£¬Ã»ÓĞ¼ÓÔØ³É¹¦µÄÊ±ºòÊ¹ÓÃÕâÕÅÍ¼Æ¬
+    //é»˜è®¤çš„æ˜¾ç¤ºå›¾
     final int stub_id=R.drawable.fakelogo;
 
     PhotosQueue photosQueue=new PhotosQueue();
-    //´ÓÕ»ÖĞÈ¡³öÒªÏÂÔØµÄÄÚÈİ£¬²¢½øĞĞÏÂÔØµÄÏß³Ì
+    //ä¸‹è½½å›¾ç‰‡çš„çº¿ç¨‹
     PhotosLoader photoLoaderThread=new PhotosLoader();
-    //±£´æimageviewºÍURLµÄ¶ÔÓ¦¹ØÏµ£¬Õâ¸öÊÇÈõÒıÓÃ£¬ÓĞ¿ÉÄÜ±»²Ù×÷ÏµÍ³»ØÊÕµô
+    //ä¿å­˜åœ°å€å’Œimageviewçš„å¯¹åº”å…³ç³»
     private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
-    //Ê¹ÏÂÔØÏß³ÌµÄÓÅÏÈ¼¶±ä¸ß£¬ÓÅÏÈÖ´ĞĞ£¬²¢ÇÒÉú³ÉÎÄ¼ş¶ÔÏó
-    //Õâ¸öÒ²ÊÇadapterµÄÒ»¸ö¶ÔÏó
+    //æ„é€ å‡½æ•°
     public ImageLoader(Context context){
         //Make the background thead low priority. This way it will not affect the UI performance
         photoLoaderThread.setPriority(Thread.NORM_PRIORITY-1);
@@ -49,24 +48,19 @@ public class ImageLoader {
         imageCache=new ICUtil4LikedList();
     }
     
-    //AdapterÖĞµÄImageLoader¶ÔÏóµ÷ÓÃµÄ·½·¨
-    //Èç¹û¶ÔÄÚ´æÖĞÓĞ»º´æ£¬¾ÍÖ±½ÓÊ¹ÓÃ£¬²»È»¾Í¼Óµ½ÏÂÔØ¶ÓÁĞÀïÃæ
-    //Õâ¸öµØ·½ĞŞ¸ÄÏÂ£¬ÈôÄÜ¹»ÔÚÎÄ¼şÖĞ£¬¾ÍÖ±½ÓÏÔÊ¾£¬²»Òª¾­¹ıÕ»µÄµ÷Õû£¬Õ»µÄµ÷ÕûÖĞ£¬
-    //¿ÉÄÜÔÚ±ğµÄÈÎÎñ¶¼ÏÂÔØÖ®ºó²Å»á´ÓÎÄ¼ş¶ÁÈ¡Õâ¸ö,Ò²²»ÖªµÀ´ÓÎÄ¼şÖĞ¶ÁÈ¡ÎÄ¼şµÄÊ±¼äÊÇ²»ÊÇºÜ³¤
+    
     public void DisplayImage(String url, Activity activity, ImageView imageView)
     {
 
     	
         imageViews.put(imageView, url);
         Bitmap bitmap=memoryCache.get(url);
-        //ÏÈÔÚÄÚ´æÖĞÕÒ
+        //å¦‚æœä»å†…å­˜é‡Œé¢è¯»å–çš„å†…å®¹ä¸æ˜¯ç©º
         if(bitmap!=null){
-//        	System.out.println("¾ÓÈ»ÄÜÔÚ£¡£¡ÄÚ´æ£¡£¡ÖĞÕÒµ½£¬Ì«ÄáÂêÉñÆæÁË,ÕâÊÇµÚ"+Utils.findURL(url)+"¸öitem");
             imageView.setImageBitmap(bitmap);
             
         }else{
-        	
-        	//ÄÚ´æÃ»ÓĞ£¬¼ÓÈëµ½ÏÂÔØ¶ÓÁĞÖĞ
+            //åŠ å…¥åˆ°ä¸‹è½½é˜Ÿåˆ—ä¸­
             queuePhoto(url, activity, imageView);
             imageView.setImageResource(stub_id); 
         }
@@ -87,8 +81,7 @@ public class ImageLoader {
         if(photoLoaderThread.getState()==Thread.State.NEW)
             photoLoaderThread.start();
     }
-    //´Ó´æ´¢¿Õ¼ä»òÍøÂçÉÏÏÂÔØÍ¼ÏñµÄ·½·¨£¬Ó¦¸ÃÔÚÏß³ÌÖĞµ÷ÓÃ
-    //ÏÂÔØÖ®ºó¾ÍÖ±½Ó´æ´¢µ½ÁË´æ´¢¿Õ¼äÖĞ£¬Í¨¹ıUtilsÖĞµÄ·½·¨½«ÏÂÔØµÄÎÄ¼ş±£´æÁË
+    //ä»æ–‡ä»¶æˆ–è€…ç½‘ç»œä¸­è¯»å–å›¾ç‰‡
     private Bitmap getBitmap(String url) 
     {
         File f=imageCache.getFile(url);
@@ -96,7 +89,6 @@ public class ImageLoader {
         //from SD cache
         Bitmap b = decodeFile(f);
         if(b!=null){
-//        	System.out.println("¾ÓÈ»ÄÜÔÚ£¡£¡ÎÄ¼ş£¡£¡ÖĞÕÒµ½£¬Ì«ÄáÂêÉñÆæÁË,ÕâÊÇµÚ"+Utils.findURL(url)+"¸öitem");
         	return b;
         }
             
@@ -110,14 +102,12 @@ public class ImageLoader {
             conn.setReadTimeout(30000);
             InputStream is=conn.getInputStream();
             OutputStream os = new FileOutputStream(f);
-            //½«ÍøÂçÉÏµÄÎÄ¼şÁ÷±£´æµ½±¾µØ
+            //å°†å›¾ç‰‡ä¿å­˜åˆ°æ–‡ä»¶ç³»ç»Ÿä¸­
             Utils.CopyStream(is, os);
             os.close();
             bitmap = decodeFile(f);
-//            System.out.println("¾ÓÈ»ÄÜÔÚ£¡£¡ÍøÂç£¡£¡ÖĞÕÒµ½£¬Ì«ÄáÂêÉñÆæÁË,ÕâÊÇµÚ"+Utils.findURL(url)+"¸öitem");
             return bitmap;
         } catch (Exception ex){
-        	System.out.println("ÍøÂç¶ÁÈ¡Ê§°Ü,ÕâÊÇµÚ"+Utils.findURL(url)+"¸öitem");
             ex.printStackTrace();
             return null;
         }
@@ -147,7 +137,7 @@ public class ImageLoader {
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize=scale;
 //            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-            //½«Í¼Ïñ²Ã¼ô³ÉÔ²ĞÎ
+            //è£å‰ªæˆä¸ºåœ†å½¢çš„å›¾ç‰‡
             return PicLoadUtil.toRoundBitmap(BitmapFactory.decodeStream(new FileInputStream(f), null, o2));
         } catch (FileNotFoundException e) {}
         return null;
@@ -159,15 +149,13 @@ public class ImageLoader {
     }
     
     public void clearCache() {
-    	System.out.println("Çå¿ÕËùÓĞµÄ´æ´¢");
         memoryCache.clear();
         imageCache.clear();
     }
     
     
     
-    //Task for the queue
-    //±£´æÁËÒ»¸öÒªÈ¥ÏÂÔØµÄµØÖ·ºÍ¶ÔÓ¦µÄimageviewĞÅÏ¢
+    //ä¸‹è½½ä»»åŠ¡çš„è®°å½•ç±»
     private class PhotoToLoad
     {
         public String url;
@@ -179,7 +167,6 @@ public class ImageLoader {
     }
     
     //stores list of photos to download
-    //ÕâÊÇÒ»¸ö±£´æÁËÒªÈ¥ÏÂÔØµÄÍ¼ÏñµÄÏß³ÌµÄÕ»£¬Õ»ÖĞÓĞpush·½·¨ºÍclean·½·¨
     class PhotosQueue
     {
         private Stack<PhotoToLoad> photosToLoad=new Stack<PhotoToLoad>();
@@ -213,15 +200,14 @@ public class ImageLoader {
                     {
                         PhotoToLoad photoToLoad;
                         synchronized(photosQueue.photosToLoad){
-                        	//½«×îĞÂµÄÏÂÔØ¶ÔÏóµ¯³ö
+                        	//å¼¹å‡ºä¸€ä¸ªä¸‹è½½ä»»åŠ¡
                             photoToLoad=photosQueue.photosToLoad.pop();
                         }
-                        //Õâ¸ö·½·¨ÖĞÓĞ¾ßÌåµÄÏÂÔØ¹ı³Ì£¬·½·¨µÄÖ´ĞĞÊ±¼ä½Ï³¤£¬ËùÒÔÔÚÏß³ÌÖĞµ÷ÓÃ
+                        //ä»æ–‡ä»¶æˆ–è€…ç½‘ç»œä¸­è¯»å–å›¾ç‰‡
                         Bitmap bmp=getBitmap(photoToLoad.url);
 //                        bmp = PicLoadUtil.toRoundBitmap(bmp);
                         memoryCache.put(photoToLoad.url, bmp);
                         
-                        //imageViewÖĞ±£´æ×Åimageviewµ½urlµÄÓ³Éä£¬Õâ¸öÊÇÈõÒıÓÃ¹ØÏµ£¬¿ÉÄÜ»á±»ÏµÍ³»ØÊÕ
                         String tag=imageViews.get(photoToLoad.imageView);
                         if(tag!=null && tag.equals(photoToLoad.url)){
                             BitmapDisplayer bd=new BitmapDisplayer(bmp, photoToLoad.imageView);
@@ -242,7 +228,6 @@ public class ImageLoader {
     
     
     //Used to display bitmap in the UI thread
-    //Ò»¸öÉèÖÃÍ¼ÏñµÄÏß³Ì£¬Éú³ÉÕâ¸öÏß³ÌµÄ×÷ÓÃÊÇÎªÁËÄÜ¹»ÔÚÖ÷Ïß³ÌÖĞÊ¹ÓÃ´ËÏß³Ì¸üĞÂ½çÃæ
     class BitmapDisplayer implements Runnable
     {
         Bitmap bitmap;

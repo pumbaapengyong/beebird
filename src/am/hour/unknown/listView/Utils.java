@@ -20,7 +20,7 @@ public class Utils {
         }
         catch(Exception ex){}
     }
-    
+    //下载的内容是测试用的，没什么用了
     public static String[] mStrings={
     		"http://img.huxiu.com/portal/201408/09/072936yvygvymxgvglxjx1.jpg",
     		"http://pica.nipic.com/2007-07-09/20077916924121_2.jpg",

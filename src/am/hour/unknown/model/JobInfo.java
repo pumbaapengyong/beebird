@@ -111,7 +111,7 @@ public class JobInfo {
 		this.jobLink = jobLink;
 	}
     public String toString(){
-		return "这里是toString方法，工作名称是："+jobName+"公司名称是"+companyName;
+		return "宸ヤ綔鍚嶇О鏄細"+jobName+"鍏徃鍚嶇О鏄細"+companyName;
     	
     }
 

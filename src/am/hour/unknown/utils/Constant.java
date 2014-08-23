@@ -3,14 +3,12 @@ public class Constant {
 	
 	public static final String ARG_FRAGMENT_INFO = "FRAGMENT_INFORMATION";
 	public static String people_logo_file = "people_logo_file";
-
-
 	public static int[] SCREEN_SCALE = {55,25,20};
 	
-	//Õâ¸öÊÇ°´Å¥µÄ¸ß¶ÈÕ¼ÏÔÊ¾¸ß¶ÈµÄ±ÈÀı
+	//åº•éƒ¨çš„ä¸‰ä¸ªæŒ‰é’®å æ˜¾ç¤ºåŒºåŸŸé«˜åº¦çš„æ¯”ä¾‹
 	public static int BUTTON_HEIGHT_SCALE = 10;
 	
-	//Õâ¸öÊÇ°´Å¥Ö®¼äÕ¼ÏÔÊ¾¿í¶ÈµÄ±ÈÀı
+	//åº•éƒ¨çš„ä¸‰ä¸ªæŒ‰é’®ä¹‹é—´çš„é—´éš”å æ€»å®½åº¦çš„æ¯”ä¾‹
 	public static int BUTTON_GAP_SCALE = 10;
 
 	public static int FEEDBACK_DIALOG = 0;
@@ -18,17 +16,10 @@ public class Constant {
 	public static int UPDATE_DIALOG = 2;
 	public static int NEW_PASSWORD_DIALOG = 3;
 	
-	//±»fragment¶ÁÈ¡£¬ÅĞ¶ÏÊÇ´ÓÊ²Ã´µØ·½½øÈëµÄ
-	//±ÈÈçËµ´ÓÏ²»¶ÁĞ±íÖĞ½øÈëµÄjobfragment£¬»¹ÊÇÖ±½Ó½øÈëµÄ
+	//æ­£å¸¸è¿›å…¥å°±æ˜¯ç‚¹å‡»APPè¿›å…¥ï¼Œæˆ–è€…ç‚¹å‡»å·¦æŠ½å±‰çš„ç¬¬äºŒä¸ªæ¡ç›®è¿›å…¥
+	//éæ­£å¸¸è¿›å…¥å°±æ˜¯é€šè¿‡ç‚¹å‡»å–œæ¬¢åˆ—è¡¨ä¸­çš„æ¡ç›®è¿›å…¥
 	public static int NORMAL_ENTRY = 10;
 	public static int ABNORMAL_ENTRY = 11;
-	
-	
-	
-
-
-	
-
 
 		
 }

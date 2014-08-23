@@ -15,25 +15,24 @@ public class DBUtil4JobFragment {
 	private SQLiteDatabase mydb = null;
 	private Context context;
 	/*
-	 * type¾ÍÊÇÕâ¸ö¶«Î÷ÊÇ´æ´¢Í¼Æ¬»¹ÊÇ´æ´¢¹¤×÷
+	 *å°†é¦–é¡µçš„å·¥ä½œçš„è¯¦ç»†ä¿¡æ¯ä¿å­˜åˆ°æ•°æ®åº“ä¸­
 	 * */
 	public DBUtil4JobFragment(){
 		this.context=MainApplication.getContext();
 		myJobSQLiteOpenHelper = new JobSQLiteOpenHelper(context, "jobdetailstable.db", null,
 				1);
-		// ´´½¨Ò»¸ö¿É¶ÁĞ´µÄÊı¾İ¿â
 		mydb = myJobSQLiteOpenHelper.getWritableDatabase();
 		
 	}
 	
 
-	//temp=0;ËµÃ÷²»ÊÇÔİÊ±ĞÔµÄÖ°Î»
-	//temp=1;ËµÃ÷ÊÇÔİÊ±ĞÔµÄÖ°Î»
+	//temp=0;ä¸æ˜¯æš‚æ—¶æ€§çš„å­˜å‚¨ï¼Œå¯¹åº”äºå–œæ¬¢çš„å·¥ä½œçš„è¯¦ç»†ä¿¡æ¯
+	//temp=1;æš‚æ—¶æ€§çš„å­˜å‚¨ï¼Œå¯¹åº”äºé¦–é¡µä¸‹ä¸€ä¸ªå·¥ä½œçš„è¯¦ç»†ä¿¡æ¯
     public void saveJobDetailInDB(JobInfo ji){
 
     	
 		ContentValues cv=new ContentValues();	
-		//Õâ»õµÄÊôĞÔÊÇÊı×Ö£¬²»ÊÇÒ»¸ö×Ö·û´®
+		//å–œæ¬¢çš„å·¥ä½œ
 		cv.put("_temp", 0);
 		cv.put("_jobId", Integer.parseInt(ji.getJobId()));   
 		cv.put("_jobName", ji.getJobName()); 
@@ -41,7 +40,6 @@ public class DBUtil4JobFragment {
 		cv.put("_salary", ji.getSalary());
 		cv.put("_workPlace", ji.getWorkPlace());
 		cv.put("_highLights", ji.getHighLights());
-		//Õâ»õµÄÊôĞÔÊÇÊı×Ö£¬²»ÊÇÒ»¸ö×Ö·û´®
 		cv.put("_companyId", Integer.parseInt(ji.getCompanyId())); 
 		cv.put("_companyName", ji.getCompanyName());
 		cv.put("_companyLogo", ji.getCompanyLogo());
@@ -55,7 +53,7 @@ public class DBUtil4JobFragment {
     }
 	
 	/*
-	 * ½«Êı¾İ¿âÖĞµÄÄ³Ò»ÌõÊı¾İ¶ÁÈ¡³öÀ´£¬ÅĞ¶Ï´æ²»´æÔÚ
+	 *ä»æ•°æ®ä¸­è¯»å–å–œæ¬¢çš„å·¥ä½œ
 	 * */
 	public JobInfo getOneJobDetailFromDB(int jobId1){
 		
@@ -129,20 +127,17 @@ public class DBUtil4JobFragment {
 	
 	
     public void saveTempJobInDB(JobInfo ji){
-    	System.out.println("±£´æÍøÂçÏÂÔØµÄÊı¾İ½øÈëÊı¾İ¿âÖĞ");
-    	//ÅĞ¶ÏÊı¾İ¿âÖĞÓĞÃ»ÓĞÕâ¸öĞÅÏ¢ÁË
+    	System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½İ½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½");
     	try{
-    		System.out.println("É¾³ıÊı¾İ¿âÖĞÒÑ¾­´æÔÚµÄÊı¾İ");
+    		System.out.println("É¾ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½");
         	deleteTempJobFromDB();
-        	//ÀïÃæ»¹Òª°Ñ±£´æÔÚÊÖ»úÖĞµÄÎÄ¼şÉ¾³ıÁË
     	}catch(Exception e){
-    		System.out.println("É¾³ıÊı¾İ¿âÖĞµÄtempÊı¾İ³ö´í");
+    		System.out.println("É¾ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½Ğµï¿½tempï¿½ï¿½İ³ï¿½ï¿½ï¿½");
     		e.printStackTrace();
     	}
     	
     	
 		ContentValues cv=new ContentValues();	
-		//Õâ»õµÄÊôĞÔÊÇÊı×Ö£¬²»ÊÇÒ»¸ö×Ö·û´®
 		cv.put("_temp", 1);
 		cv.put("_jobId", Integer.parseInt(ji.getJobId()));   
 		cv.put("_jobName", ji.getJobName()); 
@@ -150,7 +145,6 @@ public class DBUtil4JobFragment {
 		cv.put("_salary", ji.getSalary());
 		cv.put("_workPlace", ji.getWorkPlace());
 		cv.put("_highLights", ji.getHighLights());
-		//Õâ»õµÄÊôĞÔÊÇÊı×Ö£¬²»ÊÇÒ»¸ö×Ö·û´®
 		cv.put("_companyId", Integer.parseInt(ji.getCompanyId())); 
 		cv.put("_companyName", ji.getCompanyName());
 		cv.put("_companyLogo", ji.getCompanyLogo());
@@ -164,10 +158,9 @@ public class DBUtil4JobFragment {
     }
 	
 	/*
-	 * ½«Êı¾İ¿âÖĞµÄÄ³Ò»ÌõÊı¾İ¶ÁÈ¡³öÀ´£¬ÅĞ¶Ï´æ²»´æÔÚ
+	 *
 	 * */
 	public JobInfo getTempJobFromDB(){
-		System.out.println("´ÓÊı¾İ¿âÖĞ»ñÈ¡Êı¾İÖĞ");
 		Cursor cur = null;
 		try{
 			cur=mydb.rawQuery("SELECT * FROM jobdetailstable WHERE _temp = ?", new String[]{1+""});
@@ -234,13 +227,9 @@ public class DBUtil4JobFragment {
 				jobTemp.setJobLink(jobLink);
 				
 			}
-            
-            System.out.println("ÕâÀïÊÇÊı¾İ¿âµÄ·µ»Ø½á¹û"+jobTemp.toString());
             if(jobTemp.getJobName()!=null){
-            	System.out.println("·µ»Ø·Ç¿ÕÖµ");
             	return jobTemp;
             }else{
-            	System.out.println("·µ»Ø¿ÕÖµ");
             	return null;
             }
 			
@@ -263,17 +252,13 @@ public class DBUtil4JobFragment {
 	
 	
 	private class JobSQLiteOpenHelper extends SQLiteOpenHelper {
-		// ÖØĞ´¹¹Ôì·½·¨
 		public JobSQLiteOpenHelper(Context context, String name,
 			CursorFactory cursor, int version) {
 			super(context, name, cursor, version);
 		}
 		
-		// ´´½¨Êı¾İ¿âµÄ·½·¨
 		public void onCreate(SQLiteDatabase db) {
-			// ´´½¨Ò»¸öÊı¾İ¿â£¬±íÃû£ºjobdetailstable
 			db.execSQL("CREATE TABLE jobdetailstable (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-					//Õâ¸ö×Ö¶Î±íÊ¾Õâ¸öÊı¾İÊÇ²»ÊÇÔİÊ±µÄ£¬»¹ÊÇÒÑ¾­ÊÕ²Ø¹ıÁË£¬ÔİÊ±µÄ¿ÉÒÔÔÚÏÂÒ»´Î½øÈë³ÌĞòÊ±ÓÃµ½
 					"_temp INTEGER," +
 					"_jobId INTEGER," +
 					"_jobName NVARCHAR," +
@@ -292,7 +277,6 @@ public class DBUtil4JobFragment {
 					"_jobLink NVARCHAR)");
 		}
 		
-		// ¸üĞÂÊı¾İ¿âµÄ·½·¨
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		
 			db.execSQL("DROP TABLE IF EXISTS "+"jobdetailstable");     

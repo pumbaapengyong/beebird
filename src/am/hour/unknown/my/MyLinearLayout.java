@@ -9,18 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-
+//杩欎釜绫绘槸鏀惧湪棣栭〉闈笅鏂圭殑閭ｄ釜锛屽彲浠ュ姩鎬佹坊鍔犲厓绱狅紝鑰屼笖鍙互鑷姩鎹㈣鏄剧ず
 public class MyLinearLayout extends LinearLayout {
     int mLeft, mRight, mTop, mBottom;
     Hashtable<View, Position> map = new Hashtable<View, Position>();
-    
-    /**  
-     * 每个view上下的间距  
-     */ 
     private final int dividerLine = 5;  
-    /**  
-     * 每个view左右的间距  
-     */ 
     private final int dividerCol = 8;  
 
 
@@ -60,12 +53,9 @@ public class MyLinearLayout extends LinearLayout {
             final View child = getChildAt(i);
            
             child.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-            // 此处增加onlayout中的换行判断，用于计算所需的高度
             int childw = child.getMeasuredWidth();
             int childh = child.getMeasuredHeight();
-            mRight += childw;  //将每次子控件宽度进行统计叠加，如果大于设定的宽度则需要换行，高度即Top坐标也需重新设置
-
-
+            mRight += childw;
             Position position = new Position();
             mLeft = getPosition(i - j, i);
             mRight = mLeft + child.getMeasuredWidth();
@@ -76,10 +66,9 @@ public class MyLinearLayout extends LinearLayout {
                 mLeft = getPaddingLeft();
                 mRight = mLeft + child.getMeasuredWidth();
                 mTop += childh + dividerLine;
-                //PS：如果发现高度还是有问题就得自己再细调了
             }
             mBottom = mTop + child.getMeasuredHeight();
-//            mY = mTop;  //每次的高度必须记录 否则控件会叠加到一起 
+//            mY = mTop;  
 //            mX = mRight;
             position.left = mLeft;
             position.top = mTop;

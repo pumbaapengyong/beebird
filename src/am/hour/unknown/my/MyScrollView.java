@@ -6,12 +6,12 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
 /**
- *
+ *è¿™ä¸ªç±»ä¹Ÿæ˜¯ç”¨åœ¨ä¸»ç•Œé¢ï¼Œå¯ä»¥è®©æ»‘åŠ¨åˆ°ä¸€å®šä½ç½®æ˜¯ï¼Œè®©ä¸Šé¢çš„actionbaræ¶ˆå¤±ï¼Œéœ€è¦åœ¨jobFragmentä¸­ä½¿ç”¨
  */
 public class MyScrollView extends ScrollView {
 	private OnScrollListener onScrollListener;
 	/**
-	 * Ö÷ÒªÊÇÓÃÔÚÓÃ»§ÊÖÖ¸Àë¿ªMyScrollView£¬MyScrollView»¹ÔÚ¼ÌĞø»¬¶¯£¬ÎÒÃÇÓÃÀ´±£´æYµÄ¾àÀë£¬È»ºó×ö±È½Ï
+	 *
 	 */
 	private int lastScrollY;
 	
@@ -28,7 +28,7 @@ public class MyScrollView extends ScrollView {
 	}
 	
 	/**
-	 * ÉèÖÃ¹ö¶¯½Ó¿Ú
+	 *
 	 * @param onScrollListener
 	 */
 	public void setOnScrollListener(OnScrollListener onScrollListener) {
@@ -37,14 +37,14 @@ public class MyScrollView extends ScrollView {
 
 
 	/**
-	 * ÓÃÓÚÓÃ»§ÊÖÖ¸Àë¿ªMyScrollViewµÄÊ±ºò»ñÈ¡MyScrollView¹ö¶¯µÄY¾àÀë£¬È»ºó»Øµ÷¸øonScroll·½·¨ÖĞ
+	 *
 	 */
 	private Handler handler = new Handler() {
 
 		public void handleMessage(android.os.Message msg) {
 			int scrollY = MyScrollView.this.getScrollY();
 			
-			//´ËÊ±µÄ¾àÀëºÍ¼ÇÂ¼ÏÂµÄ¾àÀë²»ÏàµÈ£¬ÔÚ¸ô5ºÁÃë¸øhandler·¢ËÍÏûÏ¢
+			//ï¿½ï¿½Ê±ï¿½Ä¾ï¿½ï¿½ï¿½Í¼ï¿½Â¼ï¿½ÂµÄ¾ï¿½ï¿½ë²»ï¿½ï¿½È£ï¿½ï¿½Ú¸ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½handlerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 			if(lastScrollY != scrollY){
 				lastScrollY = scrollY;
 				handler.sendMessageDelayed(handler.obtainMessage(), 5);  
@@ -58,10 +58,7 @@ public class MyScrollView extends ScrollView {
 	}; 
 
 	/**
-	 * ÖØĞ´onTouchEvent£¬ µ±ÓÃ»§µÄÊÖÔÚMyScrollViewÉÏÃæµÄÊ±ºò£¬
-	 * Ö±½Ó½«MyScrollView»¬¶¯µÄY·½Ïò¾àÀë»Øµ÷¸øonScroll·½·¨ÖĞ£¬µ±ÓÃ»§Ì§ÆğÊÖµÄÊ±ºò£¬
-	 * MyScrollView¿ÉÄÜ»¹ÔÚ»¬¶¯£¬ËùÒÔµ±ÓÃ»§Ì§ÆğÊÖÎÒÃÇ¸ô5ºÁÃë¸øhandler·¢ËÍÏûÏ¢£¬ÔÚhandler´¦Àí
-	 * MyScrollView»¬¶¯µÄ¾àÀë
+	 *
 	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
@@ -79,15 +76,12 @@ public class MyScrollView extends ScrollView {
 
 	/**
 	 * 
-	 * ¹ö¶¯µÄ»Øµ÷½Ó¿Ú
-	 * 
 	 *
 	 */
 	public interface OnScrollListener{
 		/**
-		 * »Øµ÷·½·¨£¬ ·µ»ØMyScrollView»¬¶¯µÄY·½Ïò¾àÀë
 		 * @param scrollY
-		 * 				¡¢
+		 * 
 		 */
 		public void onScroll(int scrollY);
 	}

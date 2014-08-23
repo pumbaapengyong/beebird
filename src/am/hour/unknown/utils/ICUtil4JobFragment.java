@@ -7,17 +7,9 @@ import android.content.Context;
 import android.os.Environment;
 
 public class ICUtil4JobFragment {
-	/**
-	 * sd卡的根目录
-	 */
+
 	private static String mSdRootPath = Environment.getExternalStorageDirectory().getPath();
-	/**
-	 * 手机的缓存根目录
-	 */
 	private static String mDataRootPath  = MainApplication.getContext().getCacheDir().getPath();;
-	/**
-	 * 保存Image的目录名
-	 */
 	private final static String FOLDER_NAME = "/BeeBird/tempPics";
 	
     private static File cacheDir;
@@ -37,10 +29,6 @@ public class ICUtil4JobFragment {
         return f;
         
     }
-    
-    /**
-	 * 删除SD卡或者手机的缓存图片和目录
-	 */
 	public static void deleteFile(String fileName) {
 	
 		new File(cacheDir, fileName).delete();

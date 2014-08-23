@@ -27,7 +27,7 @@ public class PicLoadUtil
 
 	
 	
-	//Éú³ÉÒ»¸ö¿Õ°×µÄÍ¼²ã¸øactionbarÊ¹ÓÃ
+	//å¾—åˆ°ä¸€ä¸ªé€æ˜çš„å›¾å±‚ï¼Œç»™actionbarä½¿ç”¨
 	public static Drawable getActionBarDrawable(){
 		
 		Bitmap actionbar_back = Bitmap.createBitmap(100, 100, Config.ARGB_8888 );
@@ -37,12 +37,9 @@ public class PicLoadUtil
 		return new BitmapDrawable(actionbar_back);
 		}
 
-   //´Ó×ÊÔ´ÖĞ¼ÓÔØÒ»·ùÍ¼Æ¬
+   //åŠ è½½å›¾ç‰‡ï¼Œèƒ½å‡å°‘å†…å­˜çš„å ç”¨
    public static Bitmap LoadBitmap(Context context,int picID)
    {
-	   
-//	   Bitmap result=BitmapFactory.decodeResource(res, picId);
-//	   return result;
 	   
 	   BitmapFactory.Options opt = new BitmapFactory.Options();
 
@@ -52,8 +49,6 @@ public class PicLoadUtil
 
 	   opt.inInputShareable = true;
 
-	   //»ñÈ¡×ÊÔ´Í¼Æ¬
-
 	   InputStream is = context.getResources().openRawResource(picID);
 
 	   Bitmap bitmap = BitmapFactory.decodeStream(is,null, opt);
@@ -61,7 +56,6 @@ public class PicLoadUtil
 	   try {
 		is.close();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 
@@ -76,9 +70,6 @@ public class PicLoadUtil
 	   opt.inPurgeable = true;
 
 	   opt.inInputShareable = true;
-
-	   //»ñÈ¡×ÊÔ´Í¼Æ¬
-
 	   InputStream is = context.getResources().openRawResource(resID);
 
 	   Bitmap bitmap = BitmapFactory.decodeStream(is,null, opt);
@@ -95,7 +86,7 @@ public class PicLoadUtil
    
 
    
-// ²Ã¼ôBitmapÍ¼Æ¬ÎªÔ²ĞÎ
+//è£å‰ªæˆä¸ºåœ†å½¢çš„å›¾ç‰‡
 	public static Bitmap toRoundBitmap(Bitmap bitmap) {
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
@@ -148,72 +139,49 @@ public class PicLoadUtil
 		return output;
 	}
    
-   //Ëõ·ÅĞı×ªÍ¼Æ¬µÄ·½·¨
-   public static Bitmap scaleToFit(Bitmap bm,float ratio)//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
+   //å›¾ç‰‡çš„ç­‰æ¯”ç¼©æ”¾
+   public static Bitmap scaleToFit(Bitmap bm,float ratio)
    {
-	   float width = bm.getWidth(); //Í¼Æ¬¿í¶È
-	   float height = bm.getHeight();//Í¼Æ¬¸ß¶È	
+	   float width = bm.getWidth();
+	   float height = bm.getHeight();
 	   	
 	   Matrix m1 = new Matrix(); 
 	   m1.postScale(ratio, ratio);   	
-	   Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, m1, true);//ÉùÃ÷Î»Í¼    
+	   Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, m1, true);//ï¿½ï¿½ï¿½ï¿½Î»Í¼    
 	   return bmResult;
    }
    
-   //ÇĞ¸îÍ¼Æ¬µÄ·½·¨
+   //å°†å›¾ç‰‡ä¸€åˆ†ä¸ºäºŒï¼Œé¦–é¡µä¸Šé¢ä½¿ç”¨
    /*
-    * position=1,ÇĞ¸îÉÏÃæµÄ²¿·Ö£¬position=2£¬ÇĞ¸îÏÂÃæµÄ²¿·Ö
+    * position=1,ä¸Šé¢çš„éƒ¨åˆ†ï¼Œposition=2ï¼Œä¸‹é¢çš„éƒ¨åˆ†
     */
-   public static Bitmap getPartOfBitmap(Bitmap bm,int position)//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
+   public static Bitmap getPartOfBitmap(Bitmap bm,int position)
    {
-	   float width = bm.getWidth(); //Í¼Æ¬¿í¶È
-	   float height = bm.getHeight();//Í¼Æ¬¸ß¶È	
+	   float width = bm.getWidth();
+	   float height = bm.getHeight();
 	   Bitmap bmResult = null;
 	   Matrix m1 = new Matrix(); 
 	   float temp = (float)Constant.SCREEN_SCALE[1]/(Constant.SCREEN_SCALE[1]+Constant.SCREEN_SCALE[2]);
 	   m1.postScale(1, 1); 
 	   if(position==1){
-		   bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)(height*temp), m1, true);//ÉùÃ÷Î»Í¼    
+		   bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)(height*temp), m1, true);//ï¿½ï¿½ï¿½ï¿½Î»Í¼    
 	   }else if(position==2){
-		   bmResult = Bitmap.createBitmap(bm, 0, (int)(height*temp), (int)width, (int)(height*(1-temp)), m1, true);//ÉùÃ÷Î»Í¼    
+		   bmResult = Bitmap.createBitmap(bm, 0, (int)(height*temp), (int)width, (int)(height*(1-temp)), m1, true);//ï¿½ï¿½ï¿½ï¿½Î»Í¼    
 	   }
 	   return bmResult;
    }
+
    
-   
-   public static Bitmap getPartOfBitmap_Width(Bitmap bm,int position){
-	   float width = bm.getWidth(); //Í¼Æ¬¿í¶È
-	   float height = bm.getHeight();//Í¼Æ¬¸ß¶È	
-	   Bitmap bmResult = null;
-	   Matrix m1 = new Matrix(); 
-	   m1.postScale(1, 1); 
-	   bmResult = Bitmap.createBitmap(bm, position, 0, (int)MainApplication.SCREEN_WIDTH, (int)height, m1, true);//ÉùÃ÷Î»Í¼    
-	   return bmResult;
-	   
-   }
-   
-   //Á½¸öÎ¬¶È½øĞĞËõ·Å£¬²»µÈ±ÈËõ·Å
-   public static Bitmap scaleToFit(Bitmap bm,float wRatio,float hRatio)//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
+   //ä¸ç­‰æ¯”ç¼©æ”¾
+   public static Bitmap scaleToFit(Bitmap bm,float wRatio,float hRatio)//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½Ä·ï¿½ï¿½ï¿½
    {
 	   
-	   float width = bm.getWidth(); //Í¼Æ¬¿í¶È
-	   float height = bm.getHeight();//Í¼Æ¬¸ß¶È	
+	   float width = bm.getWidth();
+	   float height = bm.getHeight();
 	   	
 	   Matrix m1 = new Matrix(); 
 	   m1.postScale(wRatio, hRatio);   	
-	   Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, m1, true);//ÉùÃ÷Î»Í¼        	
-	   return bmResult;
-   }
-   //Ëõ·ÅĞı×ªÍ¼Æ¬µÄ·½·¨,Ê¹Í¼Æ¬È«ÆÁ,²»µÈ±ÈËõ·Å
-   public static Bitmap scaleToFitFullScreen(Bitmap bm,float wRatio,float hRatio)//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
-   {
-	   
-	   float width = bm.getWidth(); //Í¼Æ¬¿í¶È
-	   float height = bm.getHeight();//Í¼Æ¬¸ß¶È	
-	   	
-	   Matrix m1 = new Matrix(); 
-	   m1.postScale(wRatio, hRatio);   	
-	   Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, m1, true);//ÉùÃ÷Î»Í¼        	
+	   Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, (int)width, (int)height, m1, true);//ï¿½ï¿½ï¿½ï¿½Î»Í¼        	
 	   return bmResult;
    }
 }
