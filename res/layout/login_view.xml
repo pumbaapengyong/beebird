@@ -1,0 +1,145 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_login_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    
+    >
+    <ImageView 
+        android:layout_marginTop="30dip"
+        android:layout_gravity="center"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:background="@drawable/fakelogo"
+        />
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="挤挤"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        />
+
+    <LinearLayout 
+        android:layout_marginTop="20dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        
+        >
+        <ImageView 
+            android:layout_marginLeft="40dip"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:background="@drawable/littleman"
+            
+            />
+        <EditText 
+            android:layout_marginLeft="20dip"
+            android:id="@+id/user_name"
+            android:layout_marginRight="40dip"
+            android:layout_width="match_parent"
+            android:layout_height="25dip"
+            android:hint="账户名,建议使用邮箱或手机号"
+            android:textColorHint="#ffffff"
+            android:textSize="18sp"
+            android:gravity="bottom"
+            android:background="@android:color/transparent"
+            />
+        
+        
+    </LinearLayout>
+    <ImageView 
+        android:id="@+id/the_first_line_loginview"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:background="@android:color/white"
+        />
+    <LinearLayout 
+        android:layout_marginTop="25dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        
+        >
+        <ImageView 
+            android:layout_marginLeft="40dip"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:background="@drawable/littlelock"
+            
+            />
+        <EditText 
+            android:layout_marginLeft="20dip"
+            android:id="@+id/user_password"
+            android:layout_marginRight="40dip"
+            android:layout_width="match_parent"
+            android:layout_height="25dip"
+            android:hint="密码"
+            android:textColorHint="#ffffff"
+            android:password="true"
+            android:textSize="18sp"
+            android:gravity="bottom"
+            android:background="@android:color/transparent"
+            />
+
+        
+        
+    </LinearLayout>
+    <ImageView 
+        android:id="@+id/the_second_line_loginview"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:background="@android:color/white"
+        />
+    <Button 
+        android:id="@+id/login"
+        android:layout_marginTop="25dip"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:text="登录"
+        android:textSize="18sp"
+        android:background="@drawable/button_yellow_selector"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        
+        />
+    <Button 
+        android:id="@+id/register"
+        android:layout_marginTop="15dip"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:text="注册"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:background="@drawable/button_transparent_selector"
+        android:textColor="@android:color/white"
+        
+        />
+    <TextView
+        android:layout_marginTop="10dip" 
+        android:id="@+id/righttothemain"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:clickable="true"
+        android:text="直接进入"
+        android:textSize="13dip"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
+        
+        />
+    
+    
+    
+</LinearLayout>

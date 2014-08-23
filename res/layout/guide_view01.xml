@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_guidingview_1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/guide_text01"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+</RelativeLayout>
+
+ <!-- 
+ <FrameLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     >
+     <am.hour.unknown.MyImageView 
+         android:id="@+id/iv_guiding_1"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         />
+     <TextView
+        android:id="@+id/tv_guiding_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/guide_text01"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" 
+        />
+     
+     
+     
+ </FrameLayout>
+  -->

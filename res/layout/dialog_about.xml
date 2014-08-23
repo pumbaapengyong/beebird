@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/app_name"
+        android:background="@drawable/about" />
+    <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"
+        
+        />
+    <TextView 
+        android:id="@+id/tv_about"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="在这个浩瀚的宇宙中，您难道不想经历更多有意思的工作吗？\n这就是我们开发挤挤的原因
+        ，我们希望您的生活变得更加丰富多彩！"
+        android:textSize="18sp"
+        android:textColor="@android:color/background_dark"
+        />
+    <TextView 
+        android:id="@+id/tv_about_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="西安步云网络科技有限公司"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        />
+    
+    
+</LinearLayout>

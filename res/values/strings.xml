@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">挤挤</string>
+    <string name="list_left_zero">个人信息</string>
+    <string name="list_left_one">随机推荐</string>
+    <string name="list_left_two">我喜欢的</string>
+    <string name="list_left_three">设置</string>
+    <string name="settingcenter">设置中心</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="guide_text01">\n我的诞生\n不再是为您找工作</string>
+    <string name="guide_text02">发现这个世界上\n更酷、更有意思的\n工作职位</string>
+    <string name="guide_text03">\n\n挤挤，是一种工作态度</string>    
+    <string name="guide_btn_text">现在开始挤一挤</string>
+    
+    
+    <string name="hello_world">Hello world!</string>
+	<string name="costomview">im custom view</string>
+</resources>
