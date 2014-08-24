@@ -31,8 +31,6 @@ import android.widget.TextView;
     		Log.i(TAG, "onPreExecute() called");
 //    		textView.setText("loading...");
     	}
-    	
-    	//doInBackground�����ڲ�ִ�к�̨����,�����ڴ˷������޸�UI
 		@Override
 		protected String doInBackground(String... params) {
 			Log.i(TAG, "doInBackground(Params... params) called");
@@ -51,12 +49,10 @@ import android.widget.TextView;
 					while ((length = is.read(buf)) != -1) {
 						baos.write(buf, 0, length);
 						count += length;
-						//����publishProgress�������,���onProgressUpdate��������ִ��
+						//更新进度，调用相应的函数
 //						publishProgress((int) ((count / (float) total) * 100));
-						//Ϊ����ʾ���,����500����
-//						Thread.sleep(500);
 					}
-					//�����н�������Ƭ�ķ���
+					//从返回结果中读取照片
 //					byte [] bitmapByte =baos.toByteArray();
 //					Bitmap bitmap=BitmapFactory.decodeByteArray(bitmapByte, 0, bitmapByte.length);
 //					return new String(baos.toByteArray(), "gb2312");
@@ -68,7 +64,7 @@ import android.widget.TextView;
 			return null;
 		}
 		
-		//onProgressUpdate�������ڸ��½����Ϣ
+		//onProgressUpdate
 		@Override
     	protected void onProgressUpdate(Integer... progresses) {
 			Log.i(TAG, "onProgressUpdate(Progress... progresses) called");
@@ -77,7 +73,7 @@ import android.widget.TextView;
 			System.out.println("loading..." + progresses[0] + "%");
     	}
     	
-		//onPostExecute����������ִ�����̨��������UI,��ʾ���
+		//onPostExecute
 		@Override
 		protected void onPostExecute(String result) {
 			Log.i(TAG, "onPostExecute(Result result) called");
@@ -85,10 +81,9 @@ import android.widget.TextView;
 //			
 //			execute.setEnabled(true);
 //			cancel.setEnabled(false);
-			System.out.println("�����..." + result);
 		}
 		
-		//onCancelled����������ȡ��ִ���е�����ʱ���UI
+		//onCancelled
 		@Override
 		protected void onCancelled() {
 			Log.i(TAG, "onCancelled() called");
