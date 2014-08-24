@@ -39,7 +39,7 @@ public class DeleteAsyncTask extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
-		System.out.println("ǰ������ť��������..." + result);
+		System.out.println("结果是：" + result);
 	}
 
 }
